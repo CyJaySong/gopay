@@ -21,7 +21,7 @@
 ```go
 import (
     "github.com/go-pay/gopay/alipay"
-    "github.com/go-pay/gopay/pkg/xlog"
+    "github.com/go-pay/xlog"
 )
 
 // 初始化支付宝客户端
@@ -48,6 +48,9 @@ SetSignType(alipay.RSA2). // 设置签名类型，不设置默认 RSA2
 SetReturnUrl("https://www.fmm.ink").            // 设置返回URL
     SetNotifyUrl("https://www.fmm.ink").        // 设置异步通知URL
     SetAppAuthToken()                           // 设置第三方应用授权
+
+// 设置biz_content加密KEY，设置此参数默认开启加密
+client.SetAESKey("1234567890123456")
 
 // 自动同步验签（只支持证书模式）
 // 传入 alipayPublicCert.crt 内容
@@ -189,7 +192,7 @@ return c.String(http.StatusOK, "success")
 ```go
 import (
     "github.com/go-pay/gopay/alipay"
-    "github.com/go-pay/gopay/pkg/xlog"
+    "github.com/go-pay/xlog"
 )
 
 // 换取授权访问令牌（默认使用utf-8，RSA2）
